@@ -126,6 +126,21 @@ public class LinkedList<E> {
         return remove(size-1);
     }
 
+
+    public void removeElement(E e){
+
+        Node prev = dummyHead;
+        Node curr = prev.next;
+
+        while(prev != null ){
+            if(e == curr.e){
+                prev.next = curr.next;
+            }else{
+                prev = curr;
+            }
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();

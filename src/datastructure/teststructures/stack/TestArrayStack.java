@@ -1,4 +1,4 @@
-package datastructure.teststructures.stack;
+package stack;
 
 import datastructure.structures.stack.ArrayStack;
 
