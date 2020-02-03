@@ -197,7 +197,7 @@ public class BST<E extends Comparable<E>> {
     public E maximum(){
         if(size == 0)
             throw new IllegalArgumentException("BST is empty!");
-        return minimum(root).e;
+        return maximum(root).e;
     }
 
     /**
@@ -208,7 +208,7 @@ public class BST<E extends Comparable<E>> {
     public Node maximum(Node root){
         if(root.right == null)
             return root;
-        return minimum(root.right);
+        return maximum(root.right);
     }
 
     /**
