@@ -24,6 +24,13 @@ public class Array<E> {
         this(10);
     }
 
+    public Array(E[] arr){
+        data = (E[]) new Object[arr.length];
+        for(int i = 0 ; i < arr.length; i++)
+            data[i] = arr[i];
+        size = arr.length;
+    }
+
     /**
      * 获取数组元素个数
      *
@@ -42,7 +49,7 @@ public class Array<E> {
         return data.length;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size == 0;
     }
 
@@ -109,8 +116,8 @@ public class Array<E> {
             throw new IllegalArgumentException("Remove element failed!The index is out of bound");
         E oldData = data[index];
 
-        for (int i = index+1; i < size; i++)
-            data[i-1] = data[i];
+        for (int i = index + 1; i < size; i++)
+            data[i - 1] = data[i];
 
         size--;
         data[size] = null;
@@ -121,11 +128,11 @@ public class Array<E> {
         return oldData;
     }
 
-    public E removeLast(){
-        return remove(size-1);
+    public E removeLast() {
+        return remove(size - 1);
     }
 
-    public E removeFirst(){
+    public E removeFirst() {
         return remove(0);
     }
 
@@ -178,6 +185,20 @@ public class Array<E> {
      */
     public void addFirst(E e) {
         add(0, e);
+    }
+
+    /**
+     * 交换两个索引的元素的值
+     *
+     * @param i
+     * @param j
+     */
+    public void swap(int i, int j) {
+        if (i < 0 || j < 0 || i > size || j > size)
+            throw new IllegalArgumentException("Index is illegal");
+        E t = data[i];
+        data[i] = data[j];
+        data[j] = t;
     }
 
     @Override
