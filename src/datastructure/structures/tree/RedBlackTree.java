@@ -52,6 +52,33 @@ public class RedBlackTree<K extends Comparable<K>,V> {
     }
 
     /**
+     * 右旋转
+     * @param node
+     * @return
+     */
+    private Node rightRotate(Node node){
+        Node x = node.left;
+
+        node.left = x.right;
+        x.right = node;
+
+        x.color = node.color;
+        node.color = RED;
+
+        return x;
+    }
+
+    /**
+     * 颜色反转
+     * @param node
+     */
+    private void filpColor(Node node){
+        node.color = RED;
+        node.left.color = BLACK;
+        node.right.color = BLACK;
+    }
+
+    /**
      * 向红黑树添加元素
      * @param key,value
      */
@@ -80,6 +107,16 @@ public class RedBlackTree<K extends Comparable<K>,V> {
             node.right = add(node.right,key,value);
         else
             node.value = value;
+
+        if(isRed(node.right) && !isRed(node.left))
+            node = leftRotate(node);
+
+        if(isRed(node.left)&isRed(node.left.left))
+            node = rightRotate(node);
+
+        if(isRed(node.left) && isRed(node.right))
+            filpColor(node);
+
         return node;
     }
 
